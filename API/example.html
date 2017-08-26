@@ -1,0 +1,22 @@
+<html>
+
+<head></head>
+
+<body>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        $.post('http://localhost:4042/api/v1/auth/token?grant_type=password&client_id=a823jkas87y3kjakjhsd&&client_secret=dksu287aokjfaouiusdia7127a5skd&username=email@example.com&password=password').then(function(token) {
+            $.ajax({
+                url: 'http://localhost:4042/api/v1/profile',
+                headers: {
+                    'Authorization': 'Bearer ' + token.access_token
+                }
+            }).then(function(profile) {
+                console.log(profile);
+                alert(profile.firstName + ' ' + profile.lastName);
+            });
+        })
+    </script>
+</body>
+
+</html>
